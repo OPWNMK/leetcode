@@ -18,7 +18,7 @@ public:
          * first指针为三元组第一个元素，排序后的元素依次递增
          * 故可能有重复元素，遇到重复元素需要跳过
          * third指针为三元组第三个元素，若要让三元组为0
-         * 则需要找出满足nums[second] + nums[third] = =nums[first]的元素
+         * 则需要找出满足nums[second] + nums[third] = -nums[first]的元素
          * 
          */
         for (int first = 0; first < nums.size(); first++)
