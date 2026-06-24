@@ -1,5 +1,5 @@
 #include "commen.h"
-using namespace std;
+
 class Solution
 {
 public:

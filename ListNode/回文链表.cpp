@@ -1,13 +1,6 @@
 #include "commen.h"
 
-struct ListNode
-{
-    int val;
-    ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+
 
 class Solution
 {
@@ -47,6 +40,7 @@ public:
             node = node->next;
         return node;
     }
+
     bool isPalindrome(ListNode *head)
     {
         ListNode *node1 = head;
@@ -67,6 +61,39 @@ public:
             ans = true;
             node1 = node1->next;
             node2 = node2->next;
+        }
+        return ans;
+    }
+
+    ListNode *findMidwithFSpoint(ListNode *head)
+    {
+        ListNode *slow = head;
+        ListNode *fast = head;
+        while (fast->next != nullptr && fast->next->next != nullptr)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
+    }
+    bool isPalindrome2(ListNode *head)
+    {
+        if (head == nullptr)
+        {
+            return true;
+        }
+        ListNode *node = head;
+        ListNode *midNode = findMidwithFSpoint(head);
+        midNode = reverseList(midNode->next);
+        bool ans = true;
+        while (midNode != nullptr && ans)
+        {
+            if (node->val != midNode->val)
+            {
+                ans = false;
+            }
+            node = node->next;
+            midNode = midNode->next;
         }
         return ans;
     }
