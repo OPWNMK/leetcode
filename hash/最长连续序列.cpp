@@ -27,7 +27,7 @@ public:
             prev = cur;
         }
         // 循环结束后再更新一次，处理数组整体连续的情况
-        max_len = max(max_len, cur_len);
+        max_len = max_len > cur_len ? max_len : cur_len;
         return max_len;
     }
     /*
