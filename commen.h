@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #pragma once
 
 #include <vector>
@@ -6,15 +5,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
-using namespace std;
-=======
-#pragma once
-
-#include <vector>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
+#include <queue>
+#include <deque>
+#include <list>
 #include <stack>
 using namespace std;
 
@@ -37,4 +30,3 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
->>>>>>> 7fe8d0f7700030f0d66bf38dd005579f753456fa
