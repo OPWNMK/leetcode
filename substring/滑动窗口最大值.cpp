@@ -92,37 +92,42 @@ public:
 
     /**
      * @brief 单调队列
-     *        队列中维护窗口内没有被移出数组元素的下标
+     *        队列中维护所有可能窗口最大值元素的下标
      *        队列中元素按照nums的大小排列
      *        当队尾元素不大于新元素时将其移除
      *        队首元素即为最大值元素的下标
      *        若队首元素已经不在窗口中，将其弹出
      */
-    vector<int> maxSlidingWindow3(vector<int> &nums,int k )
-    {
+    vector<int> maxSlidingWindow3(vector<int> &nums, int k) {
         int n = nums.size();
-        deque<int> q;
+        deque<int> q;      // 存储下标，维护单调递减（队首最大）
         vector<int> ans;
-        for(int i = 0; i < k;++i)
-        {
-            while(! q.empty() && nums[i] >= nums[q.back()])
-            {
+
+        // 1. 初始化第一个窗口
+        for (int i = 0; i < k; ++i) {
+            // 只要队尾元素 <= 新元素，队尾就永无出头之日（值小且下标旧），踢掉
+            while (!q.empty() && nums[i] >= nums[q.back()]) {
                 q.pop_back();
             }
             q.push_back(i);
         }
         ans.push_back(nums[q.front()]);
-        for(int i = k;i < n;++i)
-        {
-            while(! q.empty() && nums[i] >= nums[q.back()])//
-            {
+
+        // 2. 滑动剩余窗口
+            for (int i = k; i < n; ++i) {
+            // 移除队列中所有不如 nums[i] 有竞争力的旧元素（值更小或相等，且下标更旧）
+            while (!q.empty() && nums[i] >= nums[q.back()]) {
                 q.pop_back();
             }
             q.push_back(i);
-            while(q.front() <= i - k)//将所有不在窗口内的元素移出
-            {
+
+            // 移除所有下标已滑出当前窗口（左边界为 i - k + 1）的队首过期元素
+            // 当前窗口有效索引范围：[i - k + 1, i]，因此 idx <= i - k 即为过期
+            while (q.front() <= i - k) {
                 q.pop_front();
             }
+
+            // 此时队首即为当前窗口最大值
             ans.push_back(nums[q.front()]);
         }
         return ans;
