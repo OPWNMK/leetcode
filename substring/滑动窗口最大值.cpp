@@ -21,7 +21,7 @@ public:
          * 若在窗口范围内，则判断nums[right]与max的值
          */
         int max_index = -1;
-        int max_ = INT_MIN;
+        int max_ = INT32_MIN;
         int left = 0,right = k-1;
         for(int i = left;i <= right;++i)
         {
@@ -38,7 +38,7 @@ public:
         {
             if(max_index < left)
             {
-                max_ = INT_MIN;
+                max_ = INT32_MIN;
                 for(int i = left;i <= right;++i)
                 {
                     if(nums[i] > max_)
