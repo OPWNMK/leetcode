@@ -5,6 +5,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
+#include <queue>
+#include <deque>
+#include <list>
 #include <stack>
 using namespace std;
 
