@@ -1,29 +1,24 @@
 #include "commen.h"
 
-class Solution
-{
+class Solution {
 public:
-    ListNode *detectCycle(ListNode *head)
-    {
-        if (head == nullptr || head->next == nullptr)
-        {
-            return nullptr;
-        }
-        ListNode *slow = head;
-        ListNode *fast = head->next;
-        ListNode *pre = slow;
-        while (slow != fast)
-        {
-            if (fast == nullptr || fast->next == nullptr)
-            {
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *slow = head, *fast = head;
+        while (fast != nullptr) {
+            slow = slow->next;
+            if (fast->next == nullptr) {
                 return nullptr;
             }
-            if(fast == fast->next)
-                return fast;
-            pre = slow;
-            slow = slow->next;
             fast = fast->next->next;
+            if (fast == slow) {
+                ListNode *ptr = head;
+                while (ptr != slow) {
+                    ptr = ptr->next;
+                    slow = slow->next;
+                }
+                return ptr;
+            }
         }
-        return pre;
+        return nullptr;
     }
 };
